@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+    width: 300px;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    box-shadow: 0px 0px 25px rgba(0,0,0,0.6);
+    color: white;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title h3 {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.form-control {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border: 1px solid #555;
+}
+
+.form-control::placeholder {
+    color: #aaa !important;
+}
+
+.form-control:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+}
+
+.role-btn {
+    width: 100%;
+    margin-bottom: 8px;
+    border-radius: 10px;
+}
+
+.alert {
+    font-size: 14px;
+    padding: 8px;
+}
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+    color: #aaa;
+}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="title">
+<h3>IT Asset System</h3>
+<p style="color:#ccc;">Login to continue</p>
+</div>
+{% if error %}
+<div class="alert alert-danger text-center">{{ error }}</div>
+{% endif %}
+<form method="POST" id="loginForm">
+<input type="text" name="username" class="form-control mb-3" placeholder="Username" required>
+<input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+<input type="hidden" name="role" id="role">
+
+<button type="button" onclick="submitForm('Admin')" class="btn btn-primary role-btn">Admin</button>
+<button type="button" onclick="submitForm('Staff')" class="btn btn-success role-btn">Staff</button>
+<button type="button" onclick="submitForm('HR')" class="btn btn-warning role-btn">HR Manager</button>
+<button type="button" onclick="submitForm('Employee')" class="btn btn-info role-btn">Employee</button>
+</form>
+
+<div class="footer">
+© 2026 Asset System
+</div>
+</div>
+<script>
+function submitForm(role){
+    document.getElementById("role").value = role;
+    document.getElementById("loginForm").submit();
+}
+</script>
+</body>
+</html>
